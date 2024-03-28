@@ -1,0 +1,115 @@
+<div style="background-color: #eff3f8;" class="container-fluid">
+    <div class="fs-1">
+        <p class="fs-2x fw-bold">SIP Maturity Amount Calculator</p>
+    </div>
+    
+    <div class="row">
+        <div class="col-9">
+            <div class="row bg-light">
+                <div class="my-2 fs-4"><i class="fa fa-calculator fs-4"></i><b> Calculator SIP Maturity Amount</b></div>
+                <hr>
+                <div class="row">
+                    <div class="lh-lg col-4">SIP Amount
+                        <div class="input-group mb-5">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="fa fa-indian-rupee-sign  fs-1"><span class="path1"></span><span
+                                        class="path2"></span><span class="path3"></span></i>
+                            </span>
+                            <input type="text" [(ngModel)]="calc.sip_amount" class="form-control" placeholder="Sip Amount" aria-label="Sip Amount"
+                                aria-describedby="basic-addon1" />
+                        </div>
+                    </div>
+                    <div class="lh-lg col-4">Investment Period/SIP Period
+                        <div class="input-group mb-5">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="ki-duotone ki-calendar-2 fs-1"><span class="path1"></span><span
+                                        class="path2"></span><span class="path3"></span></i>
+                            </span>
+                            <input type="text" [(ngModel)]="calc.invested_period_amount" class="form-control" placeholder="Enter Investment Period" aria-label="Enter Investment Period"
+                                aria-describedby="basic-addon1" />
+                        </div>
+                    </div>
+                    <div class="lh-lg col-4">Expected Annual Returns (%)
+                        <div class="input-group mb-5">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="fa fa-percent fs-1"><span class="path1"></span><span class="path2"></span><span
+                                        class="path3"></span></i>
+                            </span>
+                            <input type="text" [(ngModel)]="calc.expected_annual_returns" class="form-control" placeholder="Enter Expected Annual Returns(%)" aria-label=""
+                                aria-describedby="basic-addon1" />
+                        </div>
+                    </div>
+                    <div class="lh-lg col-4">Maturity Period
+                        <div class="input-group mb-5">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="ki-duotone ki-calendar-2 fs-1"><span class="path1"></span><span
+                                        class="path2"></span><span class="path3"></span></i>
+                            </span>
+                            <input type="text" [(ngModel)]="calc.maturity_period" class="form-control" placeholder="Enter Maturity Period" aria-label=""
+                                aria-describedby="basic-addon1" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button (click)="calc.calculator()" class="mt-7 btn btn-primary">Calculate</button>
+                        <button class="mt-7 ms-3 btn btn-secondary">Clear</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row bg-light mt-9 p-5">
+                <div class="col-4 text-center">
+                    <div class="uppercase text-danger fs-2 fw-bold font-break">
+                        ₹ {{calc.total | commaSeparated}}
+                    </div>
+                    <b>Expected Amount</b>
+                </div>
+                <div class="col-4 text-center">
+                    <div class="uppercase text-primary fs-2 fw-bold font-break">
+                        ₹ {{calc.invested | commaSeparated}}
+                    </div>
+                    <b>Amount Invested</b>
+                </div>
+                <div class="col-4 text-center">
+                    <div class="uppercase text-primary fs-2 fw-bold font-break">
+                        ₹ {{calc.earned | commaSeparated}}
+                    </div>
+                    <b>Wealth Gain</b>
+                </div>
+            </div>
+            <div class="row bg-light mt-9">
+                <div class="my-2 fs-4"><i class="fa fa-clock fs-4"></i><b> SIP Returns</b></div>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table table-hover table-rounded table-striped border gs-7">
+                        <thead>
+                            <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
+                                <th>Year</th>
+                                <th>Invested Amount (₹)	</th>
+                                <th>Interest Earned (₹)	</th>
+                                <th>Total Amount (₹)</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let info of calc.info">
+                            <tr>
+                                <td>{{info.year | commaSeparated}}</td>
+                                <td>{{info.invested | commaSeparated}}</td>
+                                <td>{{info.earned | commaSeparated}}</td>
+                                <td>{{info.total | commaSeparated}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col m-2">
+            <app-sip-list></app-sip-list>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
